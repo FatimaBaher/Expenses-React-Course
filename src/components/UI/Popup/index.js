@@ -6,6 +6,7 @@ function Popup({isOpen,children, close}){
         <div className="popup">
             <button onClick={()=>close()}>cancel</button>
             {children}
+    
         </div>
     );
 }
