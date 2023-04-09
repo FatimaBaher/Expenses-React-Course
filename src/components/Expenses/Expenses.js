@@ -6,7 +6,6 @@ import { useState } from "react";
 function Expenses({items}){    
    
     const [amount, setAmount] = useState();
-
     
     return (
         <>

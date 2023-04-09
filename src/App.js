@@ -1,4 +1,6 @@
 import Expenses from "./components/Expenses/Expenses.js";
+import NewExpense from "./components/NewExpense/NewExpense.js";
+import { useState } from "react";
 
 function App() {
   const expenses = [
@@ -22,10 +24,42 @@ function App() {
       date: new Date(2021, 5, 12),
     },
   ];
+  const [items, setItems] = useState(expenses);
+  const [titleInput, setTitleInput] = useState("");
+  const [dateInput, setDateInput] = useState(new Date());
+  const [amountInput, setAmountInput] = useState("0"); 
+
+  function onTitleChange(e){
+    setTitleInput(e.target.value);
+    console.log("title changed")
+    console.log(e.target.value)
+  }
+  function onDateChange(e){
+    setDateInput(e.target.value);
+    console.log("date changed")
+    console.log(e.target.value)
+
+  }
+  function onAmountChange(e){
+    setAmountInput(e.target.value);
+    console.log("amount changed")
+    console.log(e.target.value)
+  }
+
+  function onSubmit(){
+    console.log("submitted");
+    let newItem = { title: titleInput, date: new Date(dateInput), amount: amountInput};
+    let newList = [...items];
+    newList.push(newItem);
+    console.log(newList);
+    setItems(newList);
+    
+  }
+  console.log("started");
   return (
     <div>
-      <h2>Let's get started!</h2>
-      <Expenses items={expenses}/>
+      <NewExpense onTitleChange= {onTitleChange} onDateChange= {onDateChange} onAmountChange= {onAmountChange} onSubmit= {onSubmit}/>
+      <Expenses items={items}/>
     </div>
   );
 }
